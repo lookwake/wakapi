@@ -9,6 +9,8 @@ import (
 	"net"
 	"net/http"
 	"os"
+	"runtime"
+	"runtime/debug"
 	"strconv"
 	"time"
 
@@ -328,6 +330,14 @@ func main() {
 			_ = http.ListenAndServe("127.0.0.1:6060", nil)
 		}()
 	}
+
+	go func() {
+		for {
+			time.Sleep(1 * time.Minute)
+			runtime.GC()
+			debug.FreeOSMemory()
+		}
+	}()
 
 	// Listen HTTP
 	listen(router)
