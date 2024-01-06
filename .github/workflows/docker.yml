@@ -44,7 +44,7 @@ jobs:
         with:
           images: |
             ghcr.io/${{ github.repository }}
-            n1try/wakapi
+            lookwake/wakapi
           tags: |
             latest
             alpine
